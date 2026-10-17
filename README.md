@@ -1,54 +1,47 @@
-# Arcko website
+# Arcko website — latest approved version
 
-Ready-to-push static HTML, CSS and JavaScript. This export preserves the latest approved design, including the animated doodle hero, white section backgrounds, LINE/Instagram buttons and the three-stage journey overview. No framework, build dependencies, Git history or co-author metadata is included.
+Complete static HTML, CSS and JavaScript. Includes Spark, the supplied logo, six programmes, long-term learning and the mobile contact screen. No framework, Git history or co-author attribution is included.
 
 ## Publish
 
-1. Unzip this folder into your repository.
-2. Check `site-settings.json`. The production domain is currently `https://www.arc-international-edu.com`. Change it if your rebrand will use another domain.
-3. If you change settings, run `node scripts/configure.mjs` (Node.js 18+). This regenerates the static metadata, sitemap and browser configuration. Contact details displayed in HTML must also be updated if you change email/phone.
-4. Upload the **entire folder** to a static website host or push it to your connected repository. There is no build command; set the publish directory to the repository root.
-5. The homepage is `index.html`. All assets use relative paths. Canonical URLs assume the site is served from the domain root, not a subdirectory.
+1. Copy the contents of this folder into your website repository.
+2. Confirm your production domain in `site-settings.json`. It currently uses `https://www.arc-international-edu.com`.
+3. If settings change, run `node scripts/configure.mjs` (Node.js 18+).
+4. Push to your repository and connect it to a static host. Publish directory: repository root. Build command: leave empty.
 
-For a local preview, run `python3 -m http.server 8000` in this folder and visit `http://localhost:8000`.
+Keep `index.html`, CSS, JavaScript and the entire assets folder together. Do not upload only the HTML file. Existing hosting configuration and unrelated repository files should be preserved.
 
-If you are adding these files to an existing repository, preserve any unrelated files and your host's configuration. No existing website is changed by downloading this export.
+For a local preview: `python3 -m http.server 8000`, then open http://localhost:8000.
 
-## Edit the site
+## Files
 
-| File                        | Purpose                                                                |
-| --------------------------- | ---------------------------------------------------------------------- |
-| `index.html`                | Visible page content, programme cards, metadata, schema and FAQs       |
-| `styles.css`                | Approved desktop/mobile design and interaction styles                  |
-| `site.js`                   | Programme details, navigation, gallery, hero motion and LINE behaviour |
-| `site-settings.json`        | Domain, social/contact links and optional marketing IDs                |
-| `site-config.js`            | Generated public browser settings; never place secrets here            |
-| `marketing.js`              | Optional marketing event hooks and GTM loader                          |
-| `assets/images/`            | Clearly named, replaceable images                                      |
-| `assets/fonts/`             | Local Jua font and required font licence                               |
-| `robots.txt`, `sitemap.xml` | Search crawler instructions and homepage sitemap                       |
-| `docs/IMAGES.md`            | Image locations, filenames and replacement guidance                    |
-| `docs/MARKETING.md`         | SEO setup, analytics events and campaign guidance                      |
+- `index.html`: website content, SEO metadata and structured data.
+- `styles.css`: desktop and mobile layouts, branding and animation.
+- `site.js`: programme dialogs, filters, gallery, design-thinking steps and hero motion.
+- `site-settings.json`: domain, LINE and optional marketing settings.
+- `scripts/configure.mjs`: regenerates metadata, sitemap and browser configuration.
+- `marketing.js`: optional GTM integration and interaction events. Tracking is disabled until you configure and enable it.
+- `assets/images/`: clearly named replaceable images.
+- `docs/IMAGES.md`: image replacement instructions.
+- `docs/MARKETING.md`: analytics, advertising and launch setup.
 
-## LINE
+## Contacts
 
-Your LINE URL (`https://lin.ee/Sv8YgSv`) and Instagram URL (`https://www.instagram.com/arcko.creative/`) are included. If these change, update the settings and floating links in `index.html`, then regenerate.
+LINE: https://lin.ee/Sv8YgSv (@arcko.creative)
+WhatsApp: https://wa.me/66835193659
+Maps: https://maps.app.goo.gl/bFaTsB1kM1ziKFkr7
+Instagram: https://www.instagram.com/arcko.creative/
+Email: arckocreative@gmail.com
+Phone: +66 83 519 3659
 
-## Replace images
+If a contact changes, update its visible link in `index.html` as well as any corresponding configuration. Mobile contact buttons appear at widths up to 800px; the academy website continues below them. Desktop opens on the full website.
 
-Replace a file in `assets/images/` using the same filename and extension. The current photographs are included, so the site works immediately. Update the associated `alt` text and captions when a replacement depicts different content. See `docs/IMAGES.md` for the exact map.
+## Validation
 
-## SEO and marketing
+JavaScript syntax, local assets, section links, programme mappings, metadata and interaction checks are included in the handoff validation. Responsive styling is included, but real-device visual testing has not been completed. Before launch, review on your phones and verify your public domain in Search Console.
 
-The source includes crawlable HTML content, a descriptive title and meta description, canonical URL, Open Graph and X card metadata, EducationalOrganization structured data, alt text, robots.txt and a sitemap. Your actual domain must match the configuration.
+No automatic deployment, tracking accounts, passwords or API keys are included. Images and fonts retain their applicable licences; see the assets and image guide.
 
-No analytics or advertising scripts load by default. Tracking requires your own container, tag configuration and consent integration; see `docs/MARKETING.md`. No analytics IDs, advertising accounts or Search Console verification were invented.
+## Articles
 
-## Checks completed
-
-- JavaScript syntax; local image/font references; section links and unique IDs.
-- DOM interaction checks: programme filters/details, gallery close, mobile menu, social contact tracking and reduced-motion handling.
-- Static programme content, metadata, structured data and sitemap.
-- Export includes only the required image assets and local heading font.
-
-These are source/DOM checks, not a live-device rendering audit or a Google ranking guarantee. Once deployed, review desktop/mobile rendering and verify indexing in Search Console.
+See `docs/ARTICLES.md`. To publish a new article, copy the Markdown template, edit it, set `draft: false`, run `node scripts/configure.mjs`, and push the generated files. No package installation is required.

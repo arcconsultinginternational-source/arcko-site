@@ -60,12 +60,13 @@ html = html.replace(
       name: "Arcko Creative & Design Academy",
       alternateName: "Arc Innovate",
       url: base + "/",
-      logo: base + "/assets/images/arcko-logo-wordmark.png",
+      logo: base + "/assets/images/arcko-logo-lockup.png",
       email: settings.email,
       telephone: settings.phone,
       description:
-        "Creative, design thinking and 3D printing classes for children ages 4–14 in Bangkok.",
+        "3D Printing, Tech Toy Design and Digital Arts for children ages 4–14 in Sathorn, Bangkok.",
       sameAs: [settings.instagramUrl, settings.lineUrl].filter(Boolean),
+      hasMap: "https://maps.app.goo.gl/bFaTsB1kM1ziKFkr7",
       areaServed: { "@type": "City", name: "Bangkok" },
     },
     null,
@@ -131,3 +132,6 @@ console.log(
   "Updated canonical URL, schema, social metadata, sitemap and public settings for " +
     base,
 );
+
+// Keep article metadata and sitemap in sync with domain settings.
+await import("./build-articles.mjs");

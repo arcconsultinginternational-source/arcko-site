@@ -25,12 +25,12 @@ Add GA4, Google Ads and Meta Pixel through your own container as needed. Do not 
 
 Create Custom Event triggers and map these values to your GA4/advertising tags:
 
-| Event                  | Parameters                                        | Meaning                                                 |
-| ---------------------- | ------------------------------------------------- | ------------------------------------------------------- |
-| `contact_click`        | `contact_method`: email, phone, line or instagram | A visitor clicked a contact action                      |
-| `contact_options_view` | `contact_method`: line_unavailable                | LINE is not configured; fallback contact options opened |
-| `programme_view`       | `programme_name`                                  | Programme details were opened                           |
-| `programme_filter`     | `category`                                        | Programme category filter selected                      |
+| Event                  | Parameters                                                        | Meaning                                                 |
+| ---------------------- | ----------------------------------------------------------------- | ------------------------------------------------------- |
+| `contact_click`        | `contact_method`: email, phone, line, whatsapp, maps or instagram | A visitor clicked a contact action                      |
+| `contact_options_view` | `contact_method`: line_unavailable                                | LINE is not configured; fallback contact options opened |
+| `programme_view`       | `programme_name`                                                  | Programme details were opened                           |
+| `programme_filter`     | `category`                                                        | Programme category filter selected                      |
 
 Contact clicks are enquiries of interest, not completed registrations or confirmed leads. Only record a confirmed enrolment from an actual registration/payment confirmation workflow. No form values, child names, email addresses or phone numbers are included in these event payloads. GTM tags can collect other data, so configure them separately and inspect the result.
 

@@ -1,12 +1,35 @@
-// Add the official LINE URL here when ready. All LINE buttons use this setting.
+// Contact details are configured in site-settings.json.
 const LINE_OFFICIAL_URL = window.ARCKO_CONFIG.lineUrl;
-const photo = (name) => `assets/images/${name}.jpg`;
+const IMAGE_FILES = {
+  "arcko-class-1": "arcko-class-exploration.jpg",
+  "arcko-class-2": "arcko-students-showcase.jpg",
+  "arcko-class-4": "arcko-student-sketches.jpg",
+  "arcko-class-5": "arcko-class-drawing.jpg",
+  "arcko-class-6": "arcko-class-collaboration.jpg",
+  "arcko-workshop-1": "arcko-class-making.jpg",
+  "3d-printing": "programme-3d-printing.jpg",
+  electronics: "programme-tech-toy-design.jpg",
+  drawing: "programme-digital-arts.jpg",
+  cardboard: "programme-product-design.jpg",
+  chess: "programme-chess.jpg",
+  crafts: "programme-craft-club.jpg",
+  "hero-robotics": "creative-learning-placeholder.jpg",
+};
+const photo = (name) => `assets/images/${IMAGE_FILES[name]}`;
+const photos = {
+  hero: photo("hero-robotics"),
+  making: photo("cardboard"),
+  partners: photo("arcko-class-6"),
+};
+document
+  .querySelectorAll("[data-photo]")
+  .forEach((img) => (img.src = photos[img.dataset.photo]));
 const programmes = [
   {
     title: "3D Printing",
     category: "design",
     label: "DESIGN & TECHNOLOGY",
-    image: "programme-3d-printing",
+    image: "3d-printing",
     alt: "A 3D printer creating a physical object",
     intro: "From a spark of an idea to something you can hold.",
     description:
@@ -18,25 +41,10 @@ const programmes = [
     ],
   },
   {
-    title: "Idea to Design",
-    category: "design",
-    label: "DESIGN THINKING",
-    image: "programme-idea-to-design",
-    alt: "Children sketching ideas on paper",
-    intro: "Ask a question. Explore possibilities. Bring an idea to life.",
-    description:
-      "Start with people and their needs. Use the Design Thinking process to turn a thoughtful question into an idea that can be explored, made and improved.",
-    outcomes: [
-      "Observe, ask questions and understand a need",
-      "Imagine and compare possible solutions",
-      "Make a prototype and explain design choices",
-    ],
-  },
-  {
     title: "Product Design",
     category: "design",
     label: "DESIGN & TECHNOLOGY",
-    image: "programme-product-design",
+    image: "cardboard",
     alt: "Children exploring a cardboard creation",
     intro: "Reimagine everyday things with people and purpose in mind.",
     description:
@@ -51,7 +59,7 @@ const programmes = [
     title: "Tech Toy Design",
     category: "design",
     label: "DESIGN & TECHNOLOGY",
-    image: "programme-tech-toy-design",
+    image: "electronics",
     alt: "Children exploring electronics together",
     intro: "Explore movement, interaction and the joy of invention.",
     description:
@@ -66,7 +74,7 @@ const programmes = [
     title: "Chess",
     category: "strategy",
     label: "STRATEGIC THINKING",
-    image: "programme-chess",
+    image: "chess",
     alt: "A child considering a move on a chessboard",
     intro: "Think ahead. See another perspective. Make your move.",
     description:
@@ -81,7 +89,7 @@ const programmes = [
     title: "Craft Club",
     category: "making",
     label: "ART & MAKING",
-    image: "programme-craft-club",
+    image: "crafts",
     alt: "Children making colourful crafts",
     intro: "Curious hands. Everyday materials. Unexpected possibilities.",
     description:
@@ -93,6 +101,22 @@ const programmes = [
     ],
   },
 ];
+programmes.push({
+  title: "Digital Arts",
+  category: "making",
+  label: "DIGITAL ARTS",
+  image: "drawing",
+  alt: "An illustrative drawing activity",
+  intro: "Imagine it. Make it yours.",
+  description:
+    "Explore digital tools as a way to express individual ideas. Children develop their own projects through drawing, colour and visual storytelling.",
+  outcomes: [
+    "Explore digital drawing and colour",
+    "Develop personal ideas through visual expression",
+    "Reflect, experiment and refine a project",
+  ],
+});
+const grid = document.getElementById("programme-grid");
 document.querySelectorAll(".filter").forEach((button) =>
   button.addEventListener("click", () => {
     document.querySelectorAll(".filter").forEach((b) => {
@@ -128,7 +152,7 @@ document.querySelectorAll("[data-programme]").forEach((button) =>
       list.appendChild(li);
     });
     document.getElementById("programme-enquiry").href =
-      `mailto:${window.ARCKO_CONFIG.email}?subject=${encodeURIComponent(`Enquiry about ${p.title}`)}`;
+      `mailto:arckocreative@gmail.com?subject=${encodeURIComponent(`Enquiry about ${p.title}`)}`;
     programmeDialog.setAttribute("aria-labelledby", "dialog-title");
     programmeDialog.showModal();
     programmeDialog.scrollTop = 0;
@@ -235,7 +259,6 @@ document.querySelectorAll("[data-gallery]").forEach((button) =>
     galleryDialog.showModal();
   }),
 );
-// Curriculum panels remain readable when JavaScript is unavailable.
 // Hero motion pauses on request, offscreen, in background tabs, or with reduced motion.
 (() => {
   const hero = document.querySelector(".hero-bold");
