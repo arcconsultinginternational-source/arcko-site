@@ -4,5 +4,5 @@ window.ARCKO_CONFIG = Object.freeze({
   "phone": "+66835193659",
   "lineUrl": "https://lin.ee/Sv8YgSv",
   "instagramUrl": "https://www.instagram.com/arcko.creative/",
-  "googleTagManagerId": ""
+  "googleTagManagerId": "GTM-TCTS8Z2B"
 });
