@@ -327,3 +327,6 @@ document.querySelectorAll("[data-gallery]").forEach((button) =>
   hero.classList.add("hero-motion-ready");
   refresh();
 })();
+
+// Start marketing tracking on page load.
+window.addEventListener("load", () => { if (window.ArckoMarketing) window.ArckoMarketing.start(); });
