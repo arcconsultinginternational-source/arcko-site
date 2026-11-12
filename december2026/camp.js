@@ -32,7 +32,12 @@
   form.addEventListener('submit', event => {
     event.preventDefault();
     const s = selection();
-    document.getElementById('booking-message').value = `Hi Arcko! I’m interested in December Creative Week 2026.\n${s.date}\nChildren: ${s.children}${s.friends ? ' (siblings / besties)' : ''}\nEstimated total: ${money(s.total)}${s.rate ? ` (one ${s.rate * 100}% offer included)` : ''}\nPlease confirm availability, the activities, final price and payment details.\nChild age(s): `;
+    const summary = `${s.date}\n9:00 AM–12:00 PM · Sathorn\nChildren: ${s.children}${s.friends ? ' (siblings / besties)' : ''}\nTotal: ${money(s.total)}${s.rate ? ` (${s.rate * 100}% offer included)` : ''}`;
+    document.getElementById('payment-summary').textContent = summary;
+    document.getElementById('payment-total').textContent = money(s.total);
+    const message = `ARCKO December Creative Week 2026\n${summary}\nI have paid and will attach my slip. Please verify payment and confirm my booking.\nChild age(s): `;
+    document.getElementById('booking-message').value = message;
+    document.getElementById('open-line').href = 'https://line.me/R/oaMessage/%40arcko.creative/?' + encodeURIComponent(message);
     document.getElementById('copy-status').textContent = '';
     dialog.showModal();
     track('booking_summary_open', { plan: s.plan, children: s.children });
@@ -62,17 +67,23 @@
     image.src = src;
   }
   const videoSlot = document.getElementById('camp-video');
-  if (config.media.video) {
+  if (videoSlot && config.media.video) {
     const video = document.createElement('video');
     video.controls = true; video.playsInline = true; video.preload = 'metadata';
     if (config.media.poster) video.poster = config.media.poster;
     video.src = config.media.video;
     video.setAttribute('aria-label', 'Arcko December Creative Week video');
     videoSlot.replaceChildren(video);
-  } else if (config.media.poster) {
+  } else if (videoSlot && config.media.poster) {
     const image = new Image(); image.alt = 'Creative learning at Arcko';
     image.addEventListener('load', () => videoSlot.replaceChildren(image));
     image.src = config.media.poster;
   }
+  const qr = document.getElementById('payment-qr');
+  qr.addEventListener('error', () => {
+    document.getElementById('qr-block').hidden = true;
+    document.getElementById('qr-error').hidden = false;
+    document.getElementById('open-line').hidden = true;
+  });
   update();
 })();
